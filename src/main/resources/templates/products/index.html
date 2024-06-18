@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr CLASS="" th:each="product: ${products}">
+            <tr th:each="product: ${products}">
                 <td th:text="${product.id}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.brand}"></td>
@@ -38,8 +38,8 @@
                 <td th:text="@{${product.price}+'$'}"></td>
                 <td>
                     <img
-                         th:src="@{'images/'+${product.imageFileName}}"
-                         th:alt="${product.imageFileName}"
+                         th:src="@{'/images/'+${product.imageFileName}}"
+                         alt="Product Image"
                          width="100"
                     >
                 </td>

@@ -15,6 +15,16 @@
 
             <form method="post" enctype="multipart/form-data" th:object="${productDTO}">
                 <div class="row mb-2 px-4">
+                    <label class="col-sm-4 col-form-label" for="id">Name</label>
+                    <input readonly disabled type="text" th:value="${product.id}" id="id" class="form-control">
+                </div>
+
+                <div class="row mb-2 px-4">
+                    <label class="col-sm-4 col-form-label" for="date">Created at</label>
+                    <input readonly disabled type="text" th:value="${product.creationDate.toString().substring(0, 10)}" id="date" class="form-control">
+                </div>
+
+                <div class="row mb-2 px-4">
                     <label class="col-sm-4 col-form-label" for="name">Name</label>
                     <input type="text" th:field="*{name}" ID="name" class="form-control">
                     <small th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></small>
@@ -47,7 +57,16 @@
                 </div>
 
                 <div class="row mb-2 px-4">
-                    <label class="col-sm-4 col-form-label">Image</label>
+                    <label class="col-sm-1 col-form-label">Image</label>
+                    <img
+                        th:src="@{'/images/'+${product.imageFileName}}"
+                        alt="Product Image"
+                        style="width: 150px;"
+                    >
+                </div>
+
+                <div class="row mb-2 px-4">
+                    <label class="col-sm-4 col-form-label">New image</label>
                     <input type="file" th:field="*{file}" class="form-control">
                     <small th:if="${#fields.hasErrors('file')}" class="text-danger" th:errors="*{file}"></small>
                 </div>
@@ -60,7 +79,7 @@
 
                 <div class="row mb-2 px-4">
                     <div class="offset-sm-4 col-sm-4 d-grid">
-                        <button class="btn btn-primary" type="submit">Create</button>
+                        <button class="btn btn-primary" type="submit">Update</button>
                     </div>
                     <div class="col-sm-4 d-grid">
                         <a class="btn btn-outline-danger" href="/products" role="button">Cancel</a>
